@@ -13,7 +13,7 @@ function App() {
         <Header/>
         <Navigate/>
         <div className='app-wrapper-content'>
-            <Route exact path='/dialogs' component={Dialogs}/>
+            <Route path='/dialogs' component={Dialogs}/>
             <Route path='/profile' component={Profile}/>
         </div>
     </div>
