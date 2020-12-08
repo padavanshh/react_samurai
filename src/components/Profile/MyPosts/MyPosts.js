@@ -10,6 +10,10 @@ const MyPosts = () => {
         {id:3, mess: 'Im Batman', likes: 100}
     ]
 
+    let postsElements = postData.map((p) => {
+        return <Post mess={p.mess} likes={p.likes}/>
+    })
+
     return <div>
         <h3>My posts</h3>
         <div>
@@ -19,9 +23,7 @@ const MyPosts = () => {
             <button>Add post</button>
         </div>
         <div className={c.posts}>
-            <Post mess={postData[0].mess} likes={postData[0].likes}/>
-            <Post mess={postData[1].mess} likes={postData[1].likes}/>
-            <Post mess={postData[2].mess} likes={postData[2].likes}/>
+            {postsElements}
         </div>
     </div>
 }
