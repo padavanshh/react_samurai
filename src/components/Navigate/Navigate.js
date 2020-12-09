@@ -19,6 +19,9 @@ const Navigate = () => {
         <div className={c.item}>
             <a>Settings</a>
         </div>
+        <div>
+            <a>Friends</a>
+        </div>
     </nav>
 }
 
