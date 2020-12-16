@@ -1,24 +1,27 @@
 import React from 'react';
 import c from "./MyPosts.module.css";
 import Post from "./Post/Post";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state";
 
 const MyPosts = (props) => {
 
     let postsElements = props.posts.map((p) => {
         return <Post mess={p.mess} likes={p.likes}/>
-    })
+    });
 
     let newPostElement = React.createRef();
 
-    let addPost = () => {
-        let text = newPostElement.current.value;
-        props.addPost(text);
+
+
+    let addPost = () => {  // добавление записи
+        props.dispatch(addPostActionCreator());
     };
 
-    let onPostChange = () => {
+    let onPostChange = () => {   // фиксирует изменение текстериа
         let text = newPostElement.current.value;
-        props.updateNewPostText(text)
-    }
+        let action = updateNewPostTextActionCreator(text);
+        props.dispatch(action)
+    };
 
     return <div>
         <h3>My posts</h3>
@@ -32,6 +35,6 @@ const MyPosts = (props) => {
             {postsElements}
         </div>
     </div>
-}
+};
 
 export default MyPosts;

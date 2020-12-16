@@ -1,3 +1,9 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+const SEND_MESSAGE = 'SEND_MESSAGE';
+
 let store = {
     _state: {
         profilePage: {
@@ -20,25 +26,12 @@ let store = {
                 {id: 2, message: 'Hello'},
                 {id: 3, message: 'How are you?'},
                 {id: 4, message: 'Im ok'}
-            ]
+            ],
+            newMessageText: 'new message'
         }
     },
     _callSubscriber () {
         console.log('State changed')
-    },
-
-
-    addPost () {
-        let newPost = {
-            id: 5, mess: this._state.profilePage.newPostText, likes: 0
-        }
-        this._state.profilePage.postData.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber(this._state);
-    },
-    updateNewPostText (newText) {    // изменение в текстареа
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
     },
 
     getState() {
@@ -48,19 +41,43 @@ let store = {
         this._callSubscriber = observer;  // observer наблюдатель паттерн
     },
     dispatch (action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             let newPost = {
                 id: 5, mess: this._state.profilePage.newPostText, likes: 0
             }
             this._state.profilePage.postData.push(newPost)
             this._state.profilePage.newPostText = ''
             this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+            this._state.messagesPage.newMessageText = action.body;
+            this._callSubscriber(this._state);
+        } else if (action.type === SEND_MESSAGE) {
+            let body = this._state.messagesPage.newMessageText;
+            this._state.messagesPage.newMessageText = '';
+            this._state.messagesPage.textData.push({id: 6, message: body});
             this._callSubscriber(this._state);
         }
     }
-}
+};
+
+export const addPostActionCreator = () => ({type: ADD_POST});
+export const updateNewPostTextActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text
+    };
+};
+
+export const sendMessageCreator = () => ({type: SEND_MESSAGE});
+export const updateNewMessageBodyCreator = (body) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        body: body
+    };
+};
 
 export default store;
 window.store = store;
