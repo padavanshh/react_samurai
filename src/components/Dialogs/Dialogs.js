@@ -6,7 +6,7 @@ import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/messa
 
 const Dialogs = (props) => {
 
-    let state = props.store.getState().messagesPage;
+    let state = props.messagesPage;
 
     let dialogsElements = state.dialogsData.map((el) => {
         return <DialogItem name={el.name} id={el.id}/>
@@ -19,12 +19,12 @@ const Dialogs = (props) => {
     let newMessageText = state.newMessageText;
 
     let onSendMessageClick = () => {
-        props.store.dispatch(sendMessageCreator())
+        props.sendMessageCreator()
     }
 
     let onNewMessageChange = (e) => {
         let body = e.target.value;
-        props.store.dispatch(updateNewMessageBodyCreator(body))
+        props.updateNewMessageBodyCreator(body)
     }
 
     return (
@@ -35,10 +35,14 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 <div>{textElements}</div>
                 <div>
-                    <div><textarea value= {newMessageText}
+                    <div>
+                        <textarea value= {newMessageText}
                                    onChange={onNewMessageChange}
-                                   placeholder='Enter your message'></textarea></div>
-                    <div><button onClick={onSendMessageClick}>Send</button></div>
+                                   placeholder='Enter your message'></textarea>
+                    </div>
+                    <div>
+                        <button onClick={onSendMessageClick}>Send</button>
+                    </div>
                 </div>
             </div>
         </div>
