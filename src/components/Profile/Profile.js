@@ -1,5 +1,4 @@
 import React from 'react';
-import c from './Profile.module.css';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
@@ -11,7 +10,3 @@ const Profile = (props) => {
 }
 
 export default Profile;
-
-// posts={props.profilePage.postData}
-// newPostText={props.profilePage.newPostText}
-// dispatch={props.dispatch}
