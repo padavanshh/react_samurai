@@ -8,6 +8,9 @@ const Navigate = () => {
             <NavLink to='/profile' activeClassName={c.active}>Profile</NavLink>
         </div>
         <div className={c.item}>
+            <NavLink to='/users' activeClassName={c.active}>Users</NavLink>
+        </div>
+        <div className={c.item}>
             <NavLink to='/dialogs' activeClassName={c.active}>Messages</NavLink>
         </div>
         <div className={c.item}>
@@ -18,9 +21,6 @@ const Navigate = () => {
         </div>
         <div className={c.item}>
             <a>Settings</a>
-        </div>
-        <div>
-            <a>Friends</a>
         </div>
     </nav>
 }
