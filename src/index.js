@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import store from "./redux/reduxStore";
+import store from "./redux/Store";
 import ReactDOM from 'react-dom';
 import App from './App';
 import {Provider} from "react-redux";
